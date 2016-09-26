@@ -4,7 +4,8 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "import/no-extraneous-dependencies": [0],
     "linebreak-style": ["error", "unix"],
-    "react/prop-types": ["error", {"ignore": ["children", "route"]}]
+    "react/prop-types": ["error", {"ignore": ["children", "route"]}],
+    "new-cap": [0],
   },
   "env" :{
     "browser": true,
