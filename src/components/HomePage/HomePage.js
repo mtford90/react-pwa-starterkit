@@ -12,6 +12,7 @@ const HomePage = ({
   <div className="Ta(c) M(20px)">
     <TextField
       hintText="Please Key in your Github User Id."
+      className="M(20px)"
       onChange={onChangeUserId}
     />
     <Link
