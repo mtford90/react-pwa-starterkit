@@ -14,7 +14,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist'], { verbose: false }),
     new HtmlWebpackPlugin({
-      template: 'index.html',
+      template: './src/index.html',
     }),
     new CopyWebpackPlugin([
       { from: 'images/', to: 'images/' },
