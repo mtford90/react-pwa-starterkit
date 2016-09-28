@@ -15,7 +15,7 @@ injectTapEventPlugin();
 
 (() => {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/your-service-worker.js');
+    navigator.serviceWorker.register('./your-service-worker.js');
   }
 })();
 
