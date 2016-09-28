@@ -1,9 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const OfflinePlugin = require('offline-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 module.exports = {
   entry: './src/index',
@@ -28,7 +28,20 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': 'production',
     }),
-    new OfflinePlugin({ excludes: ['images/*.png'] }),
+    new SWPrecacheWebpackPlugin(
+      {
+        cacheId: 'your-cachedId',
+        filename: 'your-service-worker.js',
+        runtimeCaching: [{
+          handler: 'cacheFirst',
+          urlPattern: /^(https:\/\/api\.github\.com\/users\/)/,
+        },
+        {
+          handler: 'cacheFirst',
+          urlPattern: /[.]jpg$/,
+        }],
+      }
+    ),
   ],
   module: {
     loaders: [{

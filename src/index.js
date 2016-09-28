@@ -13,6 +13,12 @@ import store from './store';
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
+(() => {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/your-service-worker.js');
+  }
+})();
+
 ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider>

@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OfflinePlugin = require('offline-plugin');
 
 module.exports = {
   devtool: 'eval',
@@ -21,7 +20,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
-    //new OfflinePlugin({ excludes: ['images/*.png'] }),
   ],
   module: {
     preLoaders: [
