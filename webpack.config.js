@@ -29,4 +29,9 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.json', '.jsx'],
   },
+  stats:   {
+    colors: true,
+    chunks: false,
+    cached: false,
+  }
 };

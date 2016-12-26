@@ -1,15 +1,15 @@
+import SSRCaching from "electrode-react-ssr-caching" // This must come first!
+
 import express from 'express'
 import webpack from 'webpack'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import ServerSideRenderRouter from './routers/ServerSideRenderRouter'
 import favicon from 'serve-favicon'
+import env from './env'
 
-const PORT = Number(process.env.PORT || 3001)
-
-const app = express();
-
-const NODE_ENV = process.env.NODE_ENV || 'development'
+const {PORT, NODE_ENV} =  env
+const app              = express();
 
 if (NODE_ENV !== 'production') {
   console.log('NOT IN PRODUCTION SO USING WEBPACK HOT RELOAD')
