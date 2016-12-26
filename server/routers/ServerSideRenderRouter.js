@@ -16,6 +16,8 @@ import ReactDOMServer from 'react-dom/server'
 import env from '../env'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
+const {PROFILING, SSR_PROFILING} = env
+
 // Needed for onTouchTap support
 injectTapEventPlugin();
 
@@ -24,7 +26,7 @@ const router = Router()
 let isInitialised = false
 
 function renderApp (store, props = {}) {
-  const appBody = ReactDOMServer.renderToString(
+  const appBody       = ReactDOMServer.renderToString(
     <Provider store={store}>
       <RouterContext {...props} />
     </Provider>
@@ -49,15 +51,22 @@ function profileRenderApp (store, props = {}) {
     isInitialised = true
   }
 
-  SSRCaching.clearProfileData();
-  SSRCaching.enableProfiling();
+  // if (SSR_PROFILING) {
+  //   SSRCaching.clearProfileData();
+  //   SSRCaching.enableProfiling();
+  // }
+
   const before    = Date.now()
   const appBody   = renderApp(store, props)
   const after     = Date.now()
   const timeTaken = after - before
   console.log(`renderToString took ${timeTaken}ms`)
-  SSRCaching.enableProfiling(false);
-  console.log('SSRCaching profile:', JSON.stringify(SSRCaching.profileData, null, 2));
+
+  // if (SSR_PROFILING) {
+  //   SSRCaching.enableProfiling(false);
+  //   console.log('SSRCaching profile:', JSON.stringify(SSRCaching.profileData, null, 2));
+  // }
+
   return appBody
 }
 
@@ -93,7 +102,7 @@ router.get('*', (req, res, next) => {
 
     fetchData({store, location, params, history})
       .then(() => {
-        const _renderApp = env.PROFILING ? profileRenderApp : renderApp
+        const _renderApp = PROFILING ? profileRenderApp : renderApp
         const appBody    = _renderApp(store, renderProps)
 
         const state = store.getState()

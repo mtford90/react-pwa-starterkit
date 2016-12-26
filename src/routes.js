@@ -1,3 +1,4 @@
+//noinspection ES6UnusedImports
 import React from 'react';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import Layout from './Layout';
@@ -17,9 +18,11 @@ export default function routes (store) {
 
   return (
     <Router history={history}>
-      <Route path="/" component={Layout} title="PWA">
-        <IndexRoute component={Home}/>
-        <Route path="about" component={About}/>
+      <Route>
+        <Route path="/" component={Layout} title="PWA">
+          <IndexRoute component={Home}/>
+          <Route path="about" component={About}/>
+        </Route>
       </Route>
     </Router>
   )

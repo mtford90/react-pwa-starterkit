@@ -7,6 +7,7 @@ import plugins from './webpack/plugins.config'
 module.exports = {
   devtool: null,
   entry:   [
+
     'webpack-hot-middleware/client',
     'babel-polyfill',
     './src/index',

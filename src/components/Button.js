@@ -3,9 +3,9 @@
 import React, {Component, PropTypes, Element} from 'react';
 
 type Props = {
+  title: string,
   visited: boolean,
   onClick: () => void,
-  children?: any,
 };
 
 export default class Button extends Component {
@@ -40,8 +40,6 @@ export default class Button extends Component {
       className += ' visited';
     }
 
-    let children = this.props.children
-
     return (
       <div
         className={className}
@@ -50,7 +48,7 @@ export default class Button extends Component {
         onMouseDown={this.onMouseDown}
         onClick={this.props.onClick}
       >
-        {children}
+        {this.props.title}
       </div>
     );
   }

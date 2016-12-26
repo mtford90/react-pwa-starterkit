@@ -1,4 +1,4 @@
-import SSRCaching from "electrode-react-ssr-caching" // This must come first!
+require('electrode-react-ssr-caching') // Must come first
 
 import express from 'express'
 import webpack from 'webpack'
